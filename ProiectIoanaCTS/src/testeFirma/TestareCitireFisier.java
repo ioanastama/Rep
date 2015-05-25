@@ -6,20 +6,33 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import clase.Angajat;
 import clase.Firma;
 
 public class TestareCitireFisier {
+	FileReader reader;
+	BufferedReader bf;
+	
+	@Before
+	public void setUp() throws Exception {
+		reader = new FileReader("angajatTest.txt");
+		bf = new BufferedReader(reader);
+	}
+
+	
+	
 
 	@Test
 	public void test() {
 		Firma f=Firma.getInstance();
 		Angajat a1= new Angajat("Mircea","Elena","2890908778866",8000,"FullTime","IT");
 		try{
-			FileReader reader=new FileReader("angajatTest.txt");
-			BufferedReader bf=new BufferedReader(reader);
+			 reader=new FileReader("angajatTest.txt");
+			 bf=new BufferedReader(reader);
 			String linie=null;
 			while((linie=bf.readLine())!=null && (linie.length())!=0){
 				linie=bf.readLine();
@@ -40,8 +53,7 @@ public class TestareCitireFisier {
 	                
 			}
 			
-			bf.close();
-			reader.close();
+			
 			assertEquals(a1,f.getAngajat(a1));
 			
 		}
@@ -49,6 +61,11 @@ public class TestareCitireFisier {
 		catch(Exception ex){}
 		}
 
+	@After
+	public void tearDown() throws Exception {
+		reader.close();
+		bf.close();
+	}
 	
 	}
 

@@ -1,0 +1,2 @@
+Mihalcea,Dan,1881013908978,4000,FullTime,HR
+Dinu,Cosmin,3950908112233,2000,Intern,HR
